@@ -3,18 +3,7 @@
 // #1 Реалізуйте функцію generateKey(length, characters), яка повертає рядок випадкових символів із набору characters довжиною length
 // Функцію треба покласти в файл functions.js та імпортувати за допомогою import
 
-function generateKey(keyLength, symbols) {
-
-  let newArr = [];
-
-  for (let i = 0; i < keyLength; i++) {
-    let arr = symbols.split('');
-    const randomSymbol = Math.floor(Math.random() * arr.length);
-    const randomVolume = arr[randomSymbol];
-    newArr.push(randomVolume);
-  }
-  return newArr.join('');
-}
+import { generateKey } from './functions.js'
 
 // Check:
 const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -34,11 +23,25 @@ console.log(numberKey); // 3847501826482930485728394 - випадкові сим
 
 function average(mixed) {
 
+  let sum = mixed.reduce((acc, char) => {
+    if (!isNaN(char) && typeof + char === 'number') {
+      return acc + Number(char);
+    }
+    return acc;
+  }, 0)
+  let count = mixed.reduce((acc, char) => {
+    if (!isNaN(char) && typeof + char === 'number') {
+      return acc + 1;
+    }
+    return acc;
+  }, 0)
+
+  return count === 0 ? 0 : sum / count;
 }
 
 // Check:
-// console.log(average(['hello', 12, 'hi', 3, 4, 'another hell', 1, '5', 7, 'end', 0, 'you again?', 8])); // 5
-// console.log(average([34, 'call me', 23, 'no, call me!', '11', 48, null, 51, {}, 37, undefined, 20, [], 26])); // 25
+console.log(average(['hello', 12, 'hi', 3, 4, 'another hell', 1, '5', 7, 'end', 0, 'you again?', 8])); // 5
+console.log(average([34, 'call me', 23, 'no, call me!', '11', 48, null, 51, {}, 37, undefined, 20, [], 26])); // 25
 
 // ============================================
 
