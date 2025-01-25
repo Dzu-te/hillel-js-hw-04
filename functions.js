@@ -1,13 +1,11 @@
 export function generateKey(keyLength, symbols) {
 
-  let newArr = [];
+  let generatedKey = [];
 
   for (let i = 0; i < keyLength; i++) {
-    let arr = symbols.split('');
-    const randomSymbol = Math.floor(Math.random() * arr.length);
-    const randomVolume = arr[randomSymbol];
-    newArr.push(randomVolume);
+    const randomSymbol = Math.floor(Math.random() * symbols.length);
+    const randomVolume = symbols[randomSymbol];
+    generatedKey.push(randomVolume);
   }
-  return newArr.join('');
+  return generatedKey.join('');
 }
-

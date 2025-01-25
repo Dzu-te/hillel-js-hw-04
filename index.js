@@ -21,22 +21,55 @@ console.log(numberKey); // 3847501826482930485728394 - випадкові сим
 // або елементів, які можуть бути приведені до number (включно з 0 та '5')
 // Заборонено використовувати for. Користуватися тільки методами масиву.
 
+// function average(mixed) {
+
+//   function getNumSum(acc, char) {
+//     if (!isNaN(char) && typeof + char === 'number') {
+//       return acc + Number(char);
+//     }
+//     return acc;
+//   }
+
+//   function getNumCount(acc, ch) {
+//     if (!isNaN(char) && typeof + char === 'number') {
+//       return acc + 1;
+//     }
+//     return acc;
+//   }
+
+//   let sum = mixed.reduce(getNumSum, 0);
+//   let count = mixed.reduce(getNumCount, 0);
+
+//   return count === 0 ? 0 : sum / count;
+// }
+
+// function average(mixed) {
+
+//   let { sum, count } = mixed.reduce((acc, char) => {
+
+//     const num = Number(char);
+//     if (!isNaN(num)) {
+//       acc.sum += num;
+//       acc.count += 1;
+//     }
+//     return acc;
+
+
+//   }, { sum: 0, count: 0 })
+//   console.log('sum & count:', sum, count)
+//   return count === 0 ? 0 : sum / count;
+// }
+
 function average(mixed) {
+  let sum = 0;
+  const makeNumFromChar = char => Number(char);
+  const filterNan = num => !isNaN(num);
+  const countSum = element => sum += element;
 
-  let sum = mixed.reduce((acc, char) => {
-    if (!isNaN(char) && typeof + char === 'number') {
-      return acc + Number(char);
-    }
-    return acc;
-  }, 0)
-  let count = mixed.reduce((acc, char) => {
-    if (!isNaN(char) && typeof + char === 'number') {
-      return acc + 1;
-    }
-    return acc;
-  }, 0)
+  const numArr = mixed.map(makeNumFromChar).filter(filterNan);
+  numArr.forEach(countSum);
 
-  return count === 0 ? 0 : sum / count;
+  return !numArr.length ? 0 : sum / numArr.length;
 }
 
 // Check:
