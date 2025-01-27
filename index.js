@@ -61,10 +61,11 @@ console.log(numberKey); // 3847501826482930485728394 - випадкові сим
 // }
 
 function average(mixed) {
-  let sum = 0;
+
   const makeNumFromChar = char => Number(char);
   const filterNan = num => !isNaN(num);
   const countSum = element => sum += element;
+  let sum = 0;
 
   const numArr = mixed.map(makeNumFromChar).filter(filterNan);
   numArr.forEach(countSum);
@@ -84,6 +85,17 @@ console.log(average([34, 'call me', 23, 'no, call me!', '11', 48, null, 51, {}, 
 
 function showDeepArray(deep) {
 
+  if (!Array.isArray(deep)) {
+    return
+  }
+
+  deep.forEach(element => {
+    if (typeof element === 'number') {
+      console.log(element)
+    } else {
+      showDeepArray(element)
+    }
+  })
 }
 
 
