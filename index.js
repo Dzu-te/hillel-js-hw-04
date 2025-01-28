@@ -86,14 +86,14 @@ console.log(average([34, 'call me', 23, 'no, call me!', '11', 48, null, 51, {}, 
 function showDeepArray(deep) {
 
   if (!Array.isArray(deep)) {
-    return
+    return;
   }
 
   deep.forEach(element => {
-    if (typeof element === 'number') {
-      console.log(element)
+    if (Array.isArray(element)) {
+      showDeepArray(element);
     } else {
-      showDeepArray(element)
+      console.log(element);
     }
   })
 }
